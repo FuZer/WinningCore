@@ -8,38 +8,36 @@ document.addEventListener('DOMContentLoaded', function() {
     handleServiceAnimations(); // 서비스 애니메이션 추가
 });
 
-// 셀렉트 박스 드롭다운 방향 제어
-function handleSelectDropdown() {
-    const selectElements = document.querySelectorAll('select');
+// 스크롤 애니메이션 처리
+function handleScrollAnimations() {
+    const animatedElements = document.querySelectorAll('[class*="delay-"]');
     
-    selectElements.forEach(select => {
-        select.addEventListener('click', function(e) {
-            // 셀렉트 박스가 화면 하단에 가까우면 위로 열리지 않도록 조정
-            const rect = this.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            const spaceBelow = viewportHeight - rect.bottom;
-            const spaceAbove = rect.top;
-            
-            // 셀렉트 박스가 화면 하단에 가까우면 스크롤 조정
-            if (spaceBelow < 200 && spaceAbove > 200) {
-                const scrollAmount = 200 - spaceBelow;
-                window.scrollBy({
-                    top: scrollAmount,
-                    behavior: 'smooth'
-                });
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
             }
         });
-        
-        // 셀렉트 박스가 화면 상단에 가까우면 스크롤 조정
-        select.addEventListener('focus', function() {
-            const rect = this.getBoundingClientRect();
-            if (rect.top < 100) {
-                window.scrollBy({
-                    top: rect.top - 100,
-                    behavior: 'smooth'
-                });
-            }
-        });
+    }, observerOptions);
+
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+
+    // 스크롤 진행률 표시
+    const scrollProgress = document.createElement('div');
+    scrollProgress.className = 'scroll-progress';
+    document.body.appendChild(scrollProgress);
+
+    window.addEventListener('scroll', () => {
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (window.scrollY / scrollHeight) * 100;
+        scrollProgress.style.width = scrolled + '%';
     });
 }
 
@@ -83,24 +81,17 @@ function handleNavigation() {
     });
 }
 
-// 스크롤 애니메이션 처리
-function handleScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
+// 셀렉트 드롭다운 처리
+function handleSelectDropdown() {
+    const selects = document.querySelectorAll('select');
+    
+    selects.forEach(select => {
+        select.addEventListener('change', function() {
+            if (this.value) {
+                this.style.color = '#333';
             }
         });
-    }, observerOptions);
-
-    // 애니메이션을 적용할 요소들 관찰
-    const animatedElements = document.querySelectorAll('.service-card, .portfolio-item, .stat-item');
-    animatedElements.forEach(el => observer.observe(el));
+    });
 }
 
 // 문의 폼 처리
@@ -157,7 +148,7 @@ ${data.message}
 // 서비스 스크롤 처리
 function handleServiceAnimations() {
     // 서비스 페이지에서만 실행
-    if (window.location.pathname.includes('services.html')) {
+    if (window.location.pathname.includes('/services')) {
         // 푸터 링크 클릭 시 스크롤 처리
         const footerLinks = document.querySelectorAll('.footer-section a[href*="#"]');
         
@@ -301,7 +292,7 @@ const additionalStyles = `
     }
 `;
 
-// 스타일 추가
+// 스타일 적용
 const styleSheet = document.createElement('style');
 styleSheet.textContent = additionalStyles;
 document.head.appendChild(styleSheet); 
