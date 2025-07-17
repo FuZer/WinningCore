@@ -1,0 +1,2655 @@
+/* 전체 배경 및 컬러 팔레트 - 로고 기반 재정의 */
+:root {
+    /* 로고 색상 기반 팔레트 */
+    --logo-red: #D32F2F;          /* 로고의 선명한 레드 */
+    --logo-dark-gray: #424242;     /* 로고의 다크 차콜 그레이 */
+    --logo-black: #212121;         /* 로고 텍스트 블랙 */
+    --logo-white: #ffffff;         /* 배경 화이트 */
+    
+    /* 기존 변수들을 로고 색상으로 재정의 */
+    --main-red: var(--logo-red);
+    --main-red-light: #E53935;     /* 레드의 밝은 버전 */
+    --main-dark: var(--logo-dark-gray);
+    --main-gray: #757575;          /* 중간 그레이 */
+    --main-white: var(--logo-white);
+    --main-light: #fafafa;         /* 매우 연한 그레이 */
+    --accent-red: var(--logo-red);
+    --text-white: var(--logo-white);
+    --text-dark: var(--logo-black);
+    --accent-blue: #1976D2;        /* 보조 색상으로 블루 유지 */
+    
+    /* 새로운 브랜드 색상 */
+    --brand-primary: var(--logo-red);
+    --brand-secondary: var(--logo-dark-gray);
+    --brand-accent: #FF5722;       /* 오렌지 레드 액센트 */
+    --brand-light: #FFCDD2;        /* 연한 레드 */
+    --brand-dark: #B71C1C;         /* 어두운 레드 */
+}
+
+/* 텍스트 움직임 애니메이션 */
+.morphing-text {
+    display: inline-block;
+    animation: textFloat 3s ease-in-out infinite;
+    transform-origin: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes textFloat {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-3px) scale(1.1);
+    }
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--main-white);
+    color: var(--main-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+    /* 초기 opacity 문제 제거 */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* 헤더 */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0; /* 로고 크기 증가에 맞춰 패딩 증가 */
+}
+
+/* 로고 스타일 */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
+}
+
+/* 로고 이미지 스타일 */
+.logo-image {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: var(--main-dark);
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-list a.active,
+.nav-list a:focus,
+.nav-list a:visited {
+    color: var(--logo-dark-gray);
+}
+
+.nav-list a:hover {
+    color: var(--logo-dark-gray);
+}
+
+.nav-list a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--logo-dark-gray);
+    transition: width 0.3s ease;
+}
+
+.nav-list a:hover::after {
+    width: 100%;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dropdown-toggle i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--main-dark);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.dropdown-menu a:hover {
+    background: var(--main-light);
+    color: var(--brand-primary);
+    border-bottom: 1px solid var(--brand-primary);
+}
+
+.dropdown-menu li:last-child a {
+    border-bottom: none;
+}
+
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.mobile-menu-btn span {
+    width: 25px;
+    height: 3px;
+    background: var(--main-dark);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* 강조 텍스트 스타일 */
+.highlight {
+    font-weight: 700;
+}
+
+/* 빨간 배경 섹션의 하이라이트 */
+.hero .highlight,
+.ceo-message .highlight {
+    color: #FFE4E1;
+    font-size: 1.5em;
+}
+
+/* 흰색 배경 섹션의 하이라이트 */
+.about .highlight,
+.ceo-message .highlight {
+    color: var(--brand-primary);
+    font-size: 1.5em;
+}
+
+/* 서비스 섹션의 하이라이트 */
+.services .highlight {
+    color: var(--brand-primary);
+}
+
+.brand-name {
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+.service-tag {
+  color: var(--text-white);
+  font-weight: 400;
+  opacity: 1;
+}
+
+/* Hero, About, CEO 섹션 배경 */
+.hero, .about, .ceo-message {
+    position: relative;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    overflow: visible;
+}
+
+.hero {
+    background: linear-gradient(135deg, #000000 40%, #D32F2F 55%, #B71C1C 100%);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: var(--text-white);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 300px 150px at 20% 50%, rgba(255, 255, 255, 0.015) 0%, transparent 100%),
+        radial-gradient(ellipse 250px 120px at 80% 20%, rgba(255, 255, 255, 0.01) 0%, transparent 100%),
+        radial-gradient(ellipse 280px 140px at 40% 80%, rgba(255, 255, 255, 0.012) 0%, transparent 100%);
+    opacity: 0.8;
+    animation: patternMove 60s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes patternMove {
+    0% {
+        transform: translateX(-1px) translateY(-0.5px) scale(1);
+    }
+    20% {
+        transform: translateX(0.5px) translateY(-0.5px) scale(1.005);
+    }
+    40% {
+        transform: translateX(-0.5px) translateY(1px) scale(0.995);
+    }
+    60% {
+        transform: translateX(1px) translateY(0.5px) scale(1.003);
+    }
+    80% {
+        transform: translateX(-0.5px) translateY(-1px) scale(0.997);
+    }
+    100% {
+        transform: translateX(-1px) translateY(-0.5px) scale(1);
+    }
+}
+
+.hero-overlay {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.2;
+    max-width: 800px;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero-brand {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    color: var(--text-white);
+    opacity: 0.95;
+    letter-spacing: 0.5px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.about {
+    background: var(--main-white);
+    color: var(--text-dark);
+    margin-top: 120px;
+    padding-top: 3rem;
+}
+
+.ceo-message {
+    background: var(--main-white);
+    color: var(--text-dark);
+}
+
+.about-content, .ceo-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.about-text, .ceo-text {
+    flex: 1;
+    z-index: 2;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.about-image, .ceo-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+/* 이미지 컨테이너 (about, ceo 섹션용) */
+.image-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border: 4px solid var(--main-white);
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid var(--main-red);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.05);
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1.3;
+  max-width: none;
+  white-space: pre-line;
+  word-break: normal;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    color: var(--text-white);
+    font-weight: 400;
+}
+
+.section-title {
+    font-size: 2.0rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    white-space: pre-line;
+    word-break: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.hero .section-title {
+    color: var(--text-white);
+}
+
+.about .section-title {
+    color: var(--text-dark);
+}
+
+.ceo-message .section-title {
+    color: var(--text-white);
+}
+
+.about-description, .ceo-description {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    color: var(--text-dark);
+}
+
+.about-mission, .ceo-mission {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.about-mission {
+    color: var(--text-dark);
+}
+
+.ceo-mission {
+    color: var(--text-dark);
+}
+
+.ceo-signature {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(192,57,43,0.3);
+}
+
+.ceo-signature .ceo-name .highlight {
+    color: var(--main-gray) !important;
+}
+
+.ceo-name {
+    color: var(--main-gray);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* 버튼 스타일 */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--brand-primary);
+    color: white;
+    border: 2px solid var(--brand-primary);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--brand-dark);
+    border-color: var(--brand-dark);
+    color: var(--main-white);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(211, 47, 47, 0.3);
+}
+
+.btn-secondary {
+    border: 2px solid var(--main-white);
+    color: var(--main-white);
+    background: transparent;
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: var(--main-white);
+    color: var(--brand-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+/* 서비스 히어로 섹션 - 어바웃 히어로와 동일한 스타일 사용 */
+.services-intro-section .about-hero {
+    background: linear-gradient(135deg, #000000 40%, #D32F2F 55%, #B71C1C 100%);
+    color: var(--main-white);
+    padding: 80px 0 40px 0;
+    text-align: center;
+    min-height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-intro-section .about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 300px 150px at 20% 50%, rgba(255, 255, 255, 0.015) 0%, transparent 100%),
+        radial-gradient(ellipse 250px 120px at 80% 20%, rgba(255, 255, 255, 0.01) 0%, transparent 100%),
+        radial-gradient(ellipse 280px 140px at 40% 80%, rgba(255, 255, 255, 0.012) 0%, transparent 100%);
+    opacity: 0.8;
+}
+
+.services-intro-section .about-hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.services-intro-section .about-hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.services-intro-section .about-hero-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    line-height: 1.8;
+    font-weight: 400;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 0;
+}
+
+/* 서비스 섹션 */
+.services {
+    background: var(--main-white);
+    color: var(--main-gray);
+    padding: 120px 0;
+    min-height: auto;
+    overflow: visible;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 160px;
+}
+
+.section-subtitle {
+    font-size: 1.3rem;
+    color: var(--main-gray);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+}
+
+/* 새로운 서비스 카테고리 스타일 */
+.service-category {
+    margin-bottom: 120px;
+    padding: 80px 0;
+    min-height: auto;
+    overflow: visible;
+}
+
+.service-category-header {
+    margin-bottom: 80px;
+    position: relative;
+    padding: 0 2rem;
+}
+
+.service-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: var(--brand-primary);
+    color: var(--main-white);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 2rem auto;
+    box-shadow: 0 10px 30px rgba(211, 47, 47, 0.3);
+}
+
+.service-header-content {
+    text-align: center;
+}
+
+.service-category-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--main-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.service-category-subtitle {
+    font-size: 1.2rem;
+    color: var(--brand-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.service-category-description {
+    font-size: 1.1rem;
+    color: var(--main-gray);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.service-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+    padding: 0 2rem;
+}
+
+.service-item {
+    background: var(--main-white);
+    border: 2px solid #f0f0f0;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.service-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    border-color: var(--brand-primary);
+}
+
+.service-item:hover::before {
+    transform: scaleX(1);
+}
+
+.service-item-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    color: var(--main-white);
+    font-size: 2rem;
+    box-shadow: 0 10px 30px rgba(211, 47, 47, 0.3);
+}
+
+.service-item h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--main-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.service-item p {
+    font-size: 1rem;
+    color: var(--main-gray);
+    line-height: 1.8;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* CTA 섹션 */
+.services-cta {
+    background: linear-gradient(135deg, var(--main-dark) 0%, var(--logo-dark-gray) 100%);
+    color: var(--main-white);
+    padding: 80px 0;
+    text-align: center;
+    min-height: auto;
+    overflow: visible;
+}
+
+.cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.cta-icon {
+    font-size: 3rem;
+    color: var(--main-white);
+    margin-bottom: 1.5rem;
+}
+
+.cta-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.cta-description {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.cta-button {
+    font-size: 1rem;
+    padding: 12px 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(211, 47, 47, 0.3);
+}
+
+.service-category {
+    margin-bottom: 100px;
+    scroll-margin-top: 100px; /* 헤더 높이만큼 상단 여백 추가 */
+}
+
+.category-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--main-dark);
+}
+
+.category-title.proposal {
+    color: var(--brand-primary);
+}
+
+.category-title.non-proposal {
+    color: var(--accent-blue);
+}
+
+.category-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.category-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--main-gray);
+    margin-bottom: 4rem;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* 서비스 소개 텍스트 스타일 */
+.service-intro {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+.service-philosophy,
+.service-approach,
+.service-mission {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--main-dark);
+}
+
+.service-philosophy {
+    font-weight: 400;
+    color: var(--main-gray);
+}
+
+.service-approach {
+    font-weight: 500;
+    color: var(--main-dark);
+}
+
+.service-mission {
+    font-weight: 600;
+    color: var(--brand-primary);
+    font-style: italic;
+}
+
+.service-quote {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--brand-primary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.service-card {
+    background: var(--main-white);
+    color: var(--main-gray);
+    border-radius: 25px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+    padding: 3rem 2.5rem;
+    text-align: left;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 70px rgba(211, 47, 47, 0.15);
+    border-color: var(--brand-primary);
+}
+
+.service-icon {
+    font-size: 3rem;
+    color: var(--brand-primary);
+    margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--main-dark);
+}
+
+.service-card p {
+    font-size: 1.1rem;
+    color: var(--main-gray);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.service-card ul {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.service-card li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--main-gray);
+}
+
+.service-card li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--main-red);
+    font-size: 0.8rem;
+}
+
+/* 포트폴리오 섹션 */
+.portfolio {
+    background: var(--main-white);
+    color: var(--main-dark);
+    padding: 100px 0;
+}
+
+.portfolio-content {
+    display: grid;
+    gap: 4rem;
+}
+
+.portfolio-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, var(--main-red), var(--accent-red));
+    color: var(--main-white);
+    border-radius: 25px;
+    padding: 3rem 2rem;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--main-white);
+    margin-bottom: 1rem;
+    text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: var(--main-white);
+    font-weight: 500;
+}
+
+.portfolio-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    height: 300px;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(211, 47, 47, 0.9));
+    color: white;
+    padding: 2.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    transform: translateY(0);
+}
+
+.portfolio-overlay h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.portfolio-overlay p {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* 문의 섹션 */
+.contact {
+    background: var(--brand-primary);
+    color: var(--main-white);
+    padding: 120px 0 80px 0;
+    min-height: 80vh;
+    overflow: visible;
+    margin-top: 50px;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: row;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 30px 1rem 0 1rem;
+    min-height: 60vh;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.contact-left {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 2rem;
+}
+
+.contact-logo {
+    margin-bottom: 2rem;
+}
+
+.contact-logo-image {
+    width: 120px;
+    height: auto;
+    filter: brightness(0) invert(1);
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--main-white);
+}
+
+.contact-info p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--main-white);
+    opacity: 0.9;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-details .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-details .contact-item i {
+    font-size: 1.2rem;
+    color: var(--main-white);
+}
+
+.contact-details .contact-item span {
+    color: var(--main-white);
+    font-size: 1rem;
+}
+
+.contact-right {
+    flex: 1.2;
+    padding-right: 1rem;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    z-index: 2;
+}
+
+.contact-subtitle {
+    font-size: 1.1rem;
+    color: var(--main-white);
+    margin: 2rem 0 0 0;
+    opacity: 0.9;
+    line-height: 1.8;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.contact-items {
+    display: grid;
+    gap: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2.5rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    min-height: 150px;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
+    margin-top: 0.5rem;
+}
+
+.contact-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--main-white);
+    font-weight: 700;
+}
+
+.contact-item p {
+    color: var(--main-white);
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.sns-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.sns-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--brand-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.sns-links a:hover {
+    color: var(--main-white);
+}
+
+/* 폼 스타일 */
+.contact-form {
+    background: var(--main-white);
+    color: var(--text-dark);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    padding: 3rem 4rem;
+    z-index: 2;
+    min-height: auto;
+    overflow: visible;
+    margin-top: 0;
+    border: 1px solid #f0f0f0;
+}
+
+/* 폼 헤더 스타일 */
+.form-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.form-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--main-dark);
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: var(--main-gray);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+/* 폼 섹션 스타일 */
+.form-section {
+    margin-bottom: 2rem;
+}
+
+.form-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--main-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e8e8e8;
+    position: relative;
+}
+
+.form-section h4::before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--brand-primary);
+}
+
+/* 필수 표시 스타일 */
+.required {
+    color: var(--brand-primary);
+    font-weight: 600;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    color: var(--brand-primary);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e8ed;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    background: var(--main-white);
+    color: var(--text-dark);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    min-height: 50px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+    color: var(--text-dark);
+}
+
+.form-group select {
+    background: var(--main-white);
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+form input, form select, form textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text-dark);
+}
+
+.form-submit {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.form-submit .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.2);
+}
+
+.form-submit .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+}
+
+/* 폼 알림 스타일 */
+.form-notice {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid var(--brand-primary);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.form-notice i {
+    color: var(--brand-primary);
+    font-size: 1.1rem;
+    margin-top: 0.1rem;
+}
+
+.form-notice p {
+    color: var(--main-gray);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 푸터 */
+.footer {
+    background: var(--main-white);
+    color: var(--text-dark);
+    padding: 4rem 0 2rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 150px;
+}
+
+.footer-section:first-child {
+    flex: 1.5;
+    min-width: 250px;
+    margin-right: 1rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 1rem;
+    color: var(--brand-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.footer-logo {
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo-image {
+    width: 120px;
+    height: auto;
+}
+
+.footer-section p {
+    margin-bottom: 0.5rem;
+    color: var(--main-gray);
+    line-height: 1.4;
+    font-size: 0.85rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.3rem;
+}
+
+.footer-section ul li a {
+    color: var(--main-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+.footer-section ul li a:hover {
+    color: var(--brand-primary);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: var(--brand-primary);
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--brand-light);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 2px solid #e0e0e0;
+    color: var(--main-gray);
+    font-weight: 400;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .about-content, .ceo-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 3rem;
+    }
+    
+    .image-container {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .hero-title, .section-title {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+    
+    .contact-content {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .contact-left {
+        order: 2;
+    }
+    
+    .contact-right {
+        order: 1;
+    }
+    
+    .contact-logo-image {
+        width: 100px;
+    }
+
+    .ceo-image .image-container {
+        width: 340px;
+        height: 340px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    /* 모바일에서 드롭다운 메뉴 숨김 */
+    .dropdown-menu {
+        display: none;
+    }
+    
+    .hero, .about, .ceo-message {
+        min-height: auto;
+        padding: 60px 0;
+    }
+    
+    .hero-overlay {
+        padding: 80px 20px;
+    }
+    
+    .hero-title {
+        font-size: 1.5rem;
+        line-height: 1.4;
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+        padding: 14px 30px;
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .service-card {
+        padding: 2rem;
+    }
+    
+    .services-hero {
+        padding: 60px 0 30px 0;
+        min-height: 18vh;
+    }
+    
+    .services-hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .service-category-title {
+        font-size: 2rem;
+    }
+    
+    .service-items {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .cta-title {
+        font-size: 1.5rem;
+    }
+    
+    .portfolio-stats {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .portfolio-gallery {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .contact-form {
+        padding: 3rem 4rem;
+        min-height: auto;
+        overflow: visible;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .image-container {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .service-card {
+        padding: 1.5rem;
+    }
+    
+    .services-hero {
+        padding: 50px 0 25px 0;
+        min-height: 15vh;
+    }
+    
+    .services-hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .service-category-title {
+        font-size: 1.8rem;
+    }
+    
+    .service-item {
+        padding: 2rem;
+    }
+    
+    .cta-title {
+        font-size: 1.3rem;
+    }
+    
+    .contact-form {
+        padding: 2rem 3rem;
+        min-height: auto;
+        overflow: visible;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .about-content, .ceo-content {
+        padding: 0 1rem;
+    }
+
+    .ceo-image .image-container {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .services-hero {
+        padding: 80px 0 10px 0;
+        min-height: 28vh;
+    }
+    
+    .services-hero-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* 서비스 안내 섹션 */
+.services-notice {
+    background: var(--main-light);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.notice-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.notice-icon {
+    font-size: 3rem;
+    color: var(--brand-primary);
+    margin-bottom: 1.5rem;
+}
+
+.notice-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.notice-description {
+    font-size: 1.1rem;
+    color: var(--main-gray);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ABOUT 페이지 스타일 */
+.about-section {
+    padding: 6rem 0;
+    background: var(--main-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 회사소개 섹션 */
+.company-intro-section {
+    background: linear-gradient(to bottom, var(--main-white) 0%, #f8f9fa 100%);
+    position: relative;
+    padding-bottom: 0;
+}
+
+/* 대표소개 섹션 배경 개선 */
+.ceo-intro-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    padding: 2rem 0 4rem 0;
+    margin-top: -40px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--brand-primary);
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.3rem;
+    color: var(--main-gray);
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.company-content, .ceo-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+}
+
+.company-content {
+    margin-bottom: 2rem;
+}
+
+.ceo-content {
+    margin-top: 1rem;
+}
+
+.company-content {
+    grid-template-columns: 1.2fr 0.8fr;
+}
+
+.company-text, .ceo-text {
+    padding: 2rem 0;
+    max-width: 100%;
+}
+
+.company-text {
+    padding-right: 1rem;
+}
+
+.intro-paragraph, .ceo-intro {
+    margin-bottom: 2rem;
+}
+
+.lead-text {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.description-paragraph, .ceo-description {
+    margin-bottom: 2rem;
+}
+
+.description-paragraph p, .ceo-description p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--main-gray);
+    margin-bottom: 1.8rem;
+    max-width: 100%;
+}
+
+/* 텍스트 블록 스타일 추가 */
+.text-block {
+    margin-bottom: 1.5rem;
+    padding: 0.8rem 0;
+}
+
+.text-block p {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--main-gray);
+}
+
+/* 철학 블록 스타일 추가 */
+.philosophy-block {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+.philosophy-block p {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--main-gray);
+}
+
+.philosophy-box {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin: 2.5rem 0;
+    border-left: none;
+    position: relative;
+}
+
+.philosophy-box::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--brand-primary);
+    opacity: 0.3;
+}
+
+.philosophy-text {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin: 0;
+    padding-left: 1rem;
+    max-width: 95%;
+}
+
+.quote-box {
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.quote-box blockquote {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--brand-primary);
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    position: relative;
+    display: inline-block;
+    max-width: 85%;
+}
+
+.quote-box blockquote::before {
+    content: '"';
+    font-size: 4rem;
+    color: var(--brand-primary);
+    position: absolute;
+    top: -1.5rem;
+    left: -2rem;
+    opacity: 0.2;
+}
+
+.quote-box blockquote::after {
+    content: '"';
+    font-size: 4rem;
+    color: var(--brand-primary);
+    position: absolute;
+    bottom: -1.5rem;
+    right: -2rem;
+    opacity: 0.2;
+}
+
+.closing-paragraph {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.closing-paragraph p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--main-gray);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.career-list {
+    margin: 2rem 0;
+}
+
+.career-item {
+    background: var(--main-light);
+    border-left: 4px solid var(--logo-red);
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    border-radius: 0 8px 8px 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.career-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.career-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--logo-red);
+    border-radius: 2px;
+}
+
+.career-item h4 {
+    color: var(--logo-dark-gray);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+.career-item p {
+    color: var(--main-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.ceo-philosophy {
+    margin-top: 2.5rem;
+}
+
+.ceo-philosophy p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--main-gray);
+    margin-bottom: 2rem;
+    max-width: 100%;
+}
+
+.final-quote {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.final-quote blockquote {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--brand-primary);
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    position: relative;
+    display: inline-block;
+}
+
+.final-quote blockquote::before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--brand-primary);
+    position: absolute;
+    top: -1rem;
+    left: -1.5rem;
+    opacity: 0.2;
+}
+
+.final-quote blockquote::after {
+    content: '"';
+    font-size: 3rem;
+    color: var(--brand-primary);
+    position: absolute;
+    bottom: -1rem;
+    right: -1.5rem;
+    opacity: 0.2;
+}
+
+.company-image, .ceo-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.company-image {
+    padding: 1.5rem;
+}
+
+.company-image:hover .company-photo {
+    transform: scale(1.02);
+}
+
+.image-placeholder {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    background: var(--main-light);
+    border: 2px dashed var(--brand-primary);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--brand-primary);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.image-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.image-placeholder p {
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* 회사 사진 스타일 */
+.company-photo-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    background: transparent;
+    padding: 1.5rem;
+}
+
+.company-photo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+    border-radius: 0;
+}
+
+.company-photo-container:hover .company-photo {
+    transform: scale(1.02);
+}
+
+/* 대표 사진 스타일 */
+.ceo-photo-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    background: transparent;
+    padding: 3rem;
+}
+
+.ceo-photo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+    border-radius: 0;
+}
+
+.ceo-photo-container:hover .ceo-photo {
+    transform: scale(1.02);
+}
+
+.ceo-photo-overlay {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    right: 0;
+    background: transparent;
+    padding: 0;
+    color: var(--text-dark);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.ceo-photo-container:hover .ceo-photo-overlay {
+    transform: translateY(-5px);
+}
+
+.ceo-title h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-dark);
+    text-shadow: none;
+}
+
+.ceo-title p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+    color: var(--main-gray);
+    text-shadow: none;
+}
+
+/* 대표 사진 반응형 */
+@media (max-width: 1024px) {
+    .ceo-photo-container {
+        max-width: 450px;
+    }
+    
+    .company-photo-container {
+        max-width: 450px;
+    }
+    
+    .ceo-photo-overlay {
+        bottom: -50px;
+    }
+    
+    .company-image {
+        padding: 1.5rem;
+    }
+    
+    .company-text {
+        padding-right: 0;
+    }
+    
+    .lead-text {
+        font-size: 1.2rem;
+    }
+    
+    .description-paragraph p, .ceo-description p {
+        font-size: 1rem;
+    }
+    
+    .text-block, .philosophy-block {
+        margin-bottom: 1.5rem;
+        padding: 0.8rem 0;
+    }
+    
+    .text-block p, .philosophy-block p {
+        font-size: 1rem;
+    }
+    
+    .philosophy-text {
+        font-size: 1rem;
+    }
+    
+    .career-item p {
+        font-size: 0.95rem;
+    }
+    
+    .ceo-philosophy p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .ceo-photo-container {
+        max-width: 400px;
+    }
+    
+    .company-photo-container {
+        max-width: 400px;
+    }
+    
+    .ceo-title h3 {
+        font-size: 1.6rem;
+    }
+    
+    .ceo-title p {
+        font-size: 1rem;
+    }
+    
+    .ceo-photo-overlay {
+        bottom: -40px;
+    }
+    
+    .company-image {
+        padding: 1rem;
+    }
+    
+    .company-text {
+        padding-right: 0;
+    }
+    
+    .lead-text {
+        font-size: 1.1rem;
+    }
+    
+    .description-paragraph p, .ceo-description p {
+        font-size: 0.95rem;
+    }
+    
+    .text-block, .philosophy-block {
+        margin-bottom: 1.2rem;
+        padding: 0.6rem 0;
+    }
+    
+    .text-block p, .philosophy-block p {
+        font-size: 0.95rem;
+    }
+    
+    .philosophy-box, .career-item {
+        margin-bottom: 1.2rem;
+    }
+    
+    .quote-box blockquote, .final-quote blockquote {
+        font-size: 1rem;
+    }
+    
+    .image-placeholder {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ceo-photo-container {
+        max-width: 350px;
+    }
+    
+    .company-photo-container {
+        max-width: 350px;
+    }
+    
+    .ceo-title h3 {
+        font-size: 1.4rem;
+    }
+    
+    .ceo-title p {
+        font-size: 0.9rem;
+    }
+    
+    .ceo-photo-overlay {
+        bottom: -35px;
+    }
+    
+    .company-image {
+        padding: 0.8rem;
+    }
+    
+    .company-text {
+        padding-right: 0;
+    }
+    
+    .lead-text {
+        font-size: 1rem;
+    }
+    
+    .description-paragraph p, .ceo-description p {
+        font-size: 0.9rem;
+    }
+    
+    .text-block, .philosophy-block {
+        margin-bottom: 0.6rem;
+        padding: 0.2rem 0;
+    }
+    
+    .text-block p, .philosophy-block p {
+        font-size: 0.9rem;
+    }
+    
+    .philosophy-text {
+        font-size: 0.9rem;
+    }
+    
+    .image-placeholder {
+        height: 150px;
+    }
+}
+
+/* ABOUT 히어로 섹션 */
+.about-hero {
+    background: linear-gradient(135deg, #000000 40%, #D32F2F 55%, #B71C1C 100%);
+    color: var(--main-white);
+    padding: 80px 0 40px 0;
+    text-align: center;
+    min-height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 300px 150px at 20% 50%, rgba(255, 255, 255, 0.015) 0%, transparent 100%),
+        radial-gradient(ellipse 250px 120px at 80% 20%, rgba(255, 255, 255, 0.01) 0%, transparent 100%),
+        radial-gradient(ellipse 280px 140px at 40% 80%, rgba(255, 255, 255, 0.012) 0%, transparent 100%);
+    opacity: 0.8;
+}
+
+.about-hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.about-hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.about-hero-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    line-height: 1.8;
+    font-weight: 400;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 0;
+}
+
+/* ABOUT 페이지 반응형 디자인 */
+@media (max-width: 1024px) {
+    .about-hero {
+        padding: 4rem 0;
+    }
+    
+    .about-hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .about-hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .company-content, .ceo-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin-top: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+        .company-intro-section {
+        padding-bottom: 0;
+    }
+
+    .ceo-intro-section {
+        padding: 1.5rem 0 3rem 0;
+        margin-top: -20px;
+    }
+    
+    .ceo-intro {
+        margin-bottom: 1.5rem;
+    }
+    
+    .career-list {
+        margin: 1.5rem 0;
+    }
+    
+    .ceo-philosophy {
+        margin-top: 2rem;
+    }
+    
+    .lead-text {
+        font-size: 1.3rem;
+    }
+    
+    .description-paragraph p, .ceo-description p {
+        font-size: 1rem;
+    }
+    
+    .text-block, .philosophy-block {
+        margin-bottom: 1rem;
+        padding: 0.4rem 0;
+    }
+    
+    .text-block p, .philosophy-block p {
+        font-size: 1rem;
+    }
+    
+    .philosophy-text {
+        font-size: 1rem;
+    }
+    
+    .career-item p {
+        font-size: 0.95rem;
+    }
+    
+    .ceo-philosophy p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 3rem 0;
+    }
+    
+    .about-hero-title {
+        font-size: 2rem;
+    }
+    
+    .about-hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .about-section {
+        padding: 2rem 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .company-content, .ceo-content {
+        margin-top: 2rem;
+    }
+    
+        .company-intro-section {
+        padding-bottom: 0;
+    }
+
+    .ceo-intro-section {
+        padding: 1rem 0 2rem 0;
+        margin-top: -15px;
+    }
+    
+    .ceo-intro {
+        margin-bottom: 1.2rem;
+    }
+    
+    .career-list {
+        margin: 1.2rem 0;
+    }
+    
+    .ceo-philosophy {
+        margin-top: 1.5rem;
+    }
+    
+    .ceo-intro-section::after {
+        height: 60px;
+    }
+    
+    .lead-text {
+        font-size: 1.2rem;
+    }
+    
+    .text-block, .philosophy-block {
+        margin-bottom: 0.8rem;
+        padding: 0.3rem 0;
+    }
+    
+    .text-block p, .philosophy-block p {
+        font-size: 0.95rem;
+    }
+    
+    .philosophy-box, .career-item {
+        margin-bottom: 1.2rem;
+    }
+    
+    .quote-box blockquote, .final-quote blockquote {
+        font-size: 1rem;
+    }
+    
+    .image-placeholder {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero {
+        padding: 2rem 0;
+    }
+    
+    .about-hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .about-hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .company-content, .ceo-content {
+        margin-top: 1.5rem;
+    }
+    
+        .company-intro-section {
+        padding-bottom: 0;
+    }
+
+    .ceo-intro-section {
+        padding: 0.8rem 0 1.5rem 0;
+        margin-top: -10px;
+    }
+    
+    .ceo-intro {
+        margin-bottom: 1rem;
+    }
+    
+    .career-list {
+        margin: 1rem 0;
+    }
+    
+    .ceo-philosophy {
+        margin-top: 1.2rem;
+    }
+    
+    .ceo-intro-section::after {
+        height: 40px;
+    }
+    
+    .lead-text {
+        font-size: 1.1rem;
+    }
+    
+    .text-block, .philosophy-block {
+        margin-bottom: 0.6rem;
+        padding: 0.2rem 0;
+    }
+    
+    .text-block p, .philosophy-block p {
+        font-size: 0.9rem;
+    }
+    
+    .philosophy-text {
+        font-size: 0.9rem;
+    }
+    
+    .image-placeholder {
+        height: 150px;
+    }
+}

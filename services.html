@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>서비스 - WinningCore</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="WinningCore Logo" class="logo-image">
+                    </a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li class="dropdown">
+                            <a href="services.html" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="services.html#proposal-consulting">전략 컨설팅</a></li>
+                                <li><a href="services.html#speech-coaching">스피치 컨설팅</a></li>
+                                <li><a href="services.html#professional-presenter">전문 프레젠터 지원</a></li>
+                                <li><a href="services.html#training-education">역량 강화 교육</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 서비스 히어로 섹션 -->
+    <section class="about-section services-intro-section">
+        <div class="about-hero">
+            <div class="container">
+                <div class="about-hero-content">
+                    <h1 class="about-hero-title">핵심 서비스</h1>
+                    <p class="about-hero-subtitle">입찰, 발표, 커뮤니케이션까지 _ 실전 전략의 모든 것</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 서비스 섹션 -->
+    <section class="services">
+        <div class="container">
+            <!-- 전략 컨설팅 -->
+            <div class="service-category" id="proposal-consulting">
+                <div class="service-category-header">
+                    <div class="service-number delay-1">1</div>
+                    <div class="service-header-content">
+                        <h2 class="service-category-title">전략 컨설팅</h2>
+                    </div>
+                    <p class="service-category-subtitle">성과는 전략에서 시작됩니다.</p>
+                    <p class="service-category-description">입찰 제안서부터 발표자료, IR 피칭까지.<br>
+                        평가 기준과 관점에 맞춰 수주 가능성을 높이는 전략을 만듭니다.</p>
+                </div>
+                <div class="service-items">
+                    <div class="service-item" id="proposal-consulting">
+                        <div class="service-item-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>제안서 컨설팅</h3>
+                        <p>RFP 분석, 고객 니즈 도출, 핵심 메시지 및 스토리라인 설계</p>
+                    </div>
+                    <div class="service-item" id="pt-consulting">
+                        <div class="service-item-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>PT 컨설팅</h3>
+                        <p>발표 슬라이드 흐름 구성, 메시지 강화, 시각화 전략</p>
+                    </div>
+                    <div class="service-item" id="ir-pitching">
+                        <div class="service-item-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>IR 피칭 컨설팅</h3>
+                        <p>투자자 관점 구조 설계, 핵심 지표 중심 스토리텔링</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 스피치 컨설팅 -->
+            <div class="service-category" id="speech-coaching">
+                <div class="service-category-header">
+                    <div class="service-number delay-2">2</div>
+                    <div class="service-header-content">
+                        <h2 class="service-category-title">스피치 컨설팅</h2>
+                    </div>
+                    <p class="service-category-subtitle">회사를 대표해 말하는 순간, 말의 무게가 설득력을 만듭니다.</p>
+                    <p class="service-category-description">발표 불안 해소부터 전달력 향상까지.<br>
+                        실전 발표력을 키우는 맞춤형 컨설팅을 제공합니다.</p>
+                </div>
+                <div class="service-items">
+                    <div class="service-item" id="presenter-coaching">
+                        <div class="service-item-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3>제안 발표자 코칭</h3>
+                        <p>입찰·제안 PT 발표자를 위한 실전 발표 훈련</p>
+                    </div>
+                    <div class="service-item" id="business-speech">
+                        <div class="service-item-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>비즈니스 스피치 코칭</h3>
+                        <p>임원·대표 발표자 대상<br>중요 발표, 보고, 위기 커뮤니케이션 중심 코칭</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 전문 프레젠터 지원 -->
+            <div class="service-category" id="professional-presenter">
+                <div class="service-category-header">
+                    <div class="service-number delay-3">3</div>
+                    <div class="service-header-content">
+                        <h2 class="service-category-title">전문 프레젠터 지원</h2>
+                    </div>
+                    <p class="service-category-subtitle">고객의 메시지를 평가자에게 정확하고 설득력 있게 전달합니다.</p>
+                    <p class="service-category-description">다양한 제안 경험을 바탕으로<br>
+                        신뢰감 있는 발표와 안정적인 성과를 이끌어냅니다.</p>
+                </div>
+                <div class="service-items">
+                    <div class="service-item" id="professional-presenter">
+                        <div class="service-item-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>전문 프레젠터 파견</h3>
+                        <p>실전 제안 PT 발표 대행 서비스</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 역량 강화 교육 -->
+            <div class="service-category" id="training-education">
+                <div class="service-category-header">
+                    <div class="service-number delay-4">4</div>
+                    <div class="service-header-content">
+                        <h2 class="service-category-title">역량 강화 교육</h2>
+                    </div>
+                    <p class="service-category-subtitle">함께 성장하고, 함께 수주합니다.</p>
+                    <p class="service-category-description">기업의 상황에 맞춘 실전 교육으로<br>
+                        팀 전체의 수주 역량을 끌어올립니다.</p>
+                </div>
+                <div class="service-items">
+                    <div class="service-item" id="custom-education">
+                        <div class="service-item-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>맞춤형 실전 교육 프로그램</h3>
+                        <p>제안·발표 전 과정 실습 중심 워크숍<br>(팀 진단 → 커리큘럼 설계 → 실습 → 피드백)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 서비스 안내 섹션 -->
+    <section class="services-notice">
+        <div class="container">
+            <div class="notice-content">
+                <div class="notice-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3 class="notice-title">모든 서비스는 고객 상황에 맞춰 유동적으로 운영됩니다.</h3>
+                <p class="notice-description">
+                    각 기업의 특성과 상황에 따라 서비스 내용과 진행 방식을 조정하여<br>
+                    최적의 결과를 도출할 수 있도록 맞춤형 솔루션을 제공합니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 섹션 -->
+    <section class="services-cta">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="cta-title">중요한 발표나 제안 앞에서 방향이 고민되시나요?</h2>
+                <p class="cta-description">WinningCore는 당신의 상황을 듣고,<br>실전에서 통하는 전략으로 함께 답을 찾습니다.</p>
+                <a href="contact.html" class="btn btn-primary cta-button">
+                    <i class="fas fa-envelope"></i>
+                    상담 문의하기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="WinningCore Logo" class="footer-logo-image">
+                    </div>
+                    <p>제안과 발표, 실전 전략의 모든 것<br>수주 제안의 전략 파트너 _ 위닝코어</p>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">Company</a></li>
+                        <li><a href="about.html">Reference</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#proposal-consulting">제안서 컨설팅</a></li>
+                        <li><a href="services.html#proposal-consulting">PT 컨설팅</a></li>
+                        <li><a href="services.html#proposal-consulting">IR 피칭 컨설팅</a></li>
+                        <li><a href="services.html#professional-presenter">전문 프레젠터 지원</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Training</h4>
+                    <ul>
+                        <li><a href="services.html#speech-coaching">제안 발표자 코칭</a></li>
+                        <li><a href="services.html#speech-coaching">비즈니스 스피치 코칭</a></li>
+                        <li><a href="services.html#training-education">맞춤형 교육 프로그램</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="contact.html">이메일 문의</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 위닝코어. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html> 

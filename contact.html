@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>문의 - WinningCore</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="WinningCore Logo" class="logo-image">
+                    </a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li class="dropdown">
+                            <a href="services.html" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="services.html#proposal-consulting">전략 컨설팅</a></li>
+                                <li><a href="services.html#speech-coaching">스피치 컨설팅</a></li>
+                                <li><a href="services.html#professional-presenter">전문 프레젠터 지원</a></li>
+                                <li><a href="services.html#training-education">역량 강화 교육</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-left">
+                    <div class="contact-logo">
+                        <img src="logo.png" alt="WinningCore Logo" class="contact-logo-image">
+                    </div>
+                    <div class="contact-info">
+                        <h3>Contact</h3>
+                        <p>제안서 · 발표 · 투자 피칭 관련 문의사항은<br>양식을 통해 편하게 보내주세요.</p>
+                        <p style="margin-top: 1.5rem; opacity: 0.9;">WinningCore는 당신의 이야기를 이해하고,<br>실전에서 통하는 전략으로 함께 해답을 만들어갑니다.</p>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="contact-form">
+                        <div class="form-header">
+                            <h3>문의 양식</h3>
+                            <p>아래 양식을 작성해 주시면 빠른 시일 내에 연락드리겠습니다.</p>
+                        </div>
+                        <form id="contactForm" action="mailto:hong@winningcore.co.kr" method="post" enctype="text/plain">
+                            <div class="form-section">
+                                <h4>기본 정보</h4>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="company">회사명 <span class="required">*</span></label>
+                                        <input type="text" id="company" name="company" required placeholder="회사명을 입력해주세요">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">담당자 <span class="required">*</span></label>
+                                        <input type="text" id="name" name="name" required placeholder="성함과 직위를 입력해주세요">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">이메일 <span class="required">*</span></label>
+                                        <input type="email" id="email" name="email" required placeholder="example@company.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">연락처 <span class="required">*</span></label>
+                                        <input type="tel" id="phone" name="phone" required placeholder="010-0000-0000">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h4>서비스 문의</h4>
+                                <div class="form-group">
+                                    <label for="service">관심 서비스 <span class="required">*</span></label>
+                                    <select id="service" name="service" required>
+                                        <option value="">서비스를 선택해주세요</option>
+                                        <option value="proposal">제안서 컨설팅</option>
+                                        <option value="pt">PT 컨설팅</option>
+                                        <option value="speech-coaching">스피치 컨설팅</option>
+                                        <option value="ir">IR 피칭 컨설팅</option>
+                                        <option value="presenter">전문 프레젠터 지원</option>
+                                        <option value="edu">맞춤형 교육 프로그램</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">문의 내용 <span class="required">*</span></label>
+                                    <textarea id="message" name="message" rows="6" required placeholder="구체적인 문의사항을 상세히 작성해주세요.&#10;예시:&#10;- 현재 상황 및 고민사항&#10;- 원하는 결과물&#10;- 일정 및 예산 범위"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-submit">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                    문의하기
+                                </button>
+                                <div class="form-notice">
+                                    <i class="fas fa-info-circle"></i>
+                                    <p>※ 문의하기 버튼 클릭 시 기본 메일 클라이언트가 열립니다.<br>
+                                    메일 클라이언트가 설정되지 않은 경우 먼저 설정해주세요.</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="WinningCore Logo" class="footer-logo-image">
+                    </div>
+                    <p>제안과 발표, 실전 전략의 모든 것<br>수주 제안의 전략 파트너 _ 위닝코어</p>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">Company</a></li>
+                        <li><a href="about.html">Reference</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#proposal-consulting">제안서 컨설팅</a></li>
+                        <li><a href="services.html#proposal-consulting">PT 컨설팅</a></li>
+                        <li><a href="services.html#proposal-consulting">IR 피칭 컨설팅</a></li>
+                        <li><a href="services.html#speech-coaching">제안 발표자 코칭</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Training</h4>
+                    <ul>
+                        <li><a href="services.html#speech-coaching">비즈니스 스피치 코칭</a></li>
+                        <li><a href="services.html#training-education">전문 발표자 지원</a></li>
+                        <li><a href="services.html#training-education">맞춤형 교육 프로그램</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="contact.html">이메일 문의</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 위닝코어. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html> 
