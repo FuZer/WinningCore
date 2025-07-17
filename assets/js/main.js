@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 기본 기능들
     handleNavigation();
     handleScrollAnimations();
-    handleContactForm();
     handleSelectDropdown();
     handleServiceAnimations(); // 서비스 애니메이션 추가
 });
@@ -92,57 +91,6 @@ function handleSelectDropdown() {
             }
         });
     });
-}
-
-// 문의 폼 처리
-function handleContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            // 폼 데이터 수집
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // 간단한 유효성 검사
-            if (!data.company || !data.name || !data.email || !data.phone || !data.service || !data.message) {
-                alert('필수 항목을 모두 입력해주세요.');
-                e.preventDefault();
-                return;
-            }
-            
-            // 이메일 형식 검사
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                alert('올바른 이메일 주소를 입력해주세요.');
-                e.preventDefault();
-                return;
-            }
-            
-            // 메일 제목과 본문 구성
-            const subject = `[WinningCore 문의] ${data.service} - ${data.company}`;
-            const body = `
-회사명: ${data.company}
-담당자: ${data.name}
-이메일: ${data.email}
-연락처: ${data.phone}
-관심서비스: ${data.service}
-
-문의내용:
-${data.message}
-            `;
-            
-            // 메일 링크 생성
-            const mailtoLink = `mailto:hong@winningcore.co.kr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // 새 창에서 메일 클라이언트 열기
-            window.open(mailtoLink);
-            
-            // 성공 메시지
-            alert('문의가 성공적으로 전송되었습니다. 빠른 시일 내에 연락드리겠습니다.');
-            contactForm.reset();
-        });
-    }
 }
 
 // 서비스 스크롤 처리

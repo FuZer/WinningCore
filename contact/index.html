@@ -6,6 +6,52 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- EmailJS CDN -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        /* 로딩 스피너 스타일 */
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 메시지 스타일 */
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* 버튼 비활성화 스타일 */
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
     <!-- 네비게이션 -->
@@ -60,7 +106,7 @@
                             <h3>문의 양식</h3>
                             <p>아래 양식을 작성해 주시면 빠른 시일 내에 연락드리겠습니다.</p>
                         </div>
-                        <form id="contactForm" action="mailto:hong@winningcore.co.kr" method="post" enctype="text/plain">
+                        <form id="contactForm">
                             <div class="form-section">
                                 <h4>기본 정보</h4>
                                 <div class="form-row">
@@ -106,15 +152,17 @@
                             </div>
                             
                             <div class="form-submit">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-paper-plane"></i>
-                                    문의하기
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <div class="loading-spinner" id="loadingSpinner"></div>
+                                    <i class="fas fa-paper-plane" id="submitIcon"></i>
+                                    <span id="submitText">문의하기</span>
                                 </button>
                                 <div class="form-notice">
                                     <i class="fas fa-info-circle"></i>
-                                    <p>※ 문의하기 버튼 클릭 시 기본 메일 클라이언트가 열립니다.<br>
-                                    메일 클라이언트가 설정되지 않은 경우 먼저 설정해주세요.</p>
+                                    <p>※ 문의사항이 바로 담당자에게 전달됩니다.<br>
+                                    영업일 기준 1-2일 내에 답변드리겠습니다.</p>
                                 </div>
+                                <div class="form-message" id="formMessage"></div>
                             </div>
                         </form>
                     </div>
@@ -169,5 +217,127 @@
         </div>
     </footer>
     <script src="../assets/js/main.js"></script>
+    <script>
+        // EmailJS 초기화 
+        (function(){
+            emailjs.init({
+                publicKey: "nLHMiEqWlIY52Z1pC", 
+            });
+        })();
+
+        // 추가 보안: 페이지 이탈 시 확인 (폼 작성 중일 때)
+        let formChanged = false;
+        document.getElementById('contactForm').addEventListener('input', function() {
+            formChanged = true;
+        });
+        
+        window.addEventListener('beforeunload', function(e) {
+            if (formChanged) {
+                e.preventDefault();
+                e.returnValue = '작성 중인 내용이 있습니다. 페이지를 떠나시겠습니까?';
+            }
+        });
+
+        // 폼 제출 처리
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // 폼 제출 시 formChanged 플래그 리셋
+            formChanged = false;
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitIcon = document.getElementById('submitIcon');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const formMessage = document.getElementById('formMessage');
+            
+            // 버튼 상태 변경 (로딩)
+            submitBtn.disabled = true;
+            submitText.textContent = '전송 중...';
+            submitIcon.style.display = 'none';
+            loadingSpinner.style.display = 'inline-block';
+            formMessage.style.display = 'none';
+            
+            // 폼 데이터 검증 강화
+            const company = document.getElementById('company').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value.trim();
+            
+            // 기본 검증
+            if (!company || !name || !email || !phone || !service || !message) {
+                formMessage.className = 'form-message error';
+                formMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 모든 필수 항목을 입력해주세요.';
+                formMessage.style.display = 'block';
+                
+                // 버튼 상태 복원
+                submitBtn.disabled = false;
+                submitText.textContent = '문의하기';
+                submitIcon.style.display = 'inline-block';
+                loadingSpinner.style.display = 'none';
+                return;
+            }
+            
+            // 이메일 형식 검증
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                formMessage.className = 'form-message error';
+                formMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 올바른 이메일 형식을 입력해주세요.';
+                formMessage.style.display = 'block';
+                
+                // 버튼 상태 복원
+                submitBtn.disabled = false;
+                submitText.textContent = '문의하기';
+                submitIcon.style.display = 'inline-block';
+                loadingSpinner.style.display = 'none';
+                return;
+            }
+            
+            // 폼 데이터 수집
+            const templateParams = {
+                company: company,
+                name: name,
+                email: email,
+                phone: phone,
+                service: service,
+                message: message,
+                timestamp: new Date().toLocaleString('ko-KR') // 전송 시간 추가
+            };
+            
+            // EmailJS로 이메일 전송 (Template ID 수정 필요!)
+            emailjs.send('service_o6hl33l', 'template_7in1de9', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // 성공 메시지 표시
+                    formMessage.className = 'form-message success';
+                    formMessage.innerHTML = '<i class="fas fa-check-circle"></i> 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 연락드리겠습니다.';
+                    formMessage.style.display = 'block';
+                    
+                    // 폼 초기화
+                    document.getElementById('contactForm').reset();
+                    
+                    // 성공 시 스크롤을 메시지로 이동
+                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // 오류 메시지 표시
+                    formMessage.className = 'form-message error';
+                    formMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+                    formMessage.style.display = 'block';
+                })
+                .finally(function() {
+                    // 버튼 상태 복원
+                    submitBtn.disabled = false;
+                    submitText.textContent = '문의하기';
+                    submitIcon.style.display = 'inline-block';
+                    loadingSpinner.style.display = 'none';
+                });
+        });
+    </script>
 </body>
 </html> 
