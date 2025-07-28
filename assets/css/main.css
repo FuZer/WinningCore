@@ -2653,3 +2653,757 @@ form input, form select, form textarea {
         height: 150px;
     }
 }
+
+/* 매우 작은 화면 (344px 이하) 대응 */
+@media (max-width: 500px) {
+    .container {
+        padding: 0 0.8rem;
+    }
+    
+    /* 헤더 최적화 */
+    .header-content {
+        padding: 0.8rem 0;
+    }
+    
+    .logo-image {
+        width: 90px;
+    }
+    
+    /* 히어로 섹션 최적화 */
+    .hero-overlay {
+        padding: 60px 15px;
+    }
+    
+    .hero-title {
+        font-size: 1.3rem;
+        line-height: 1.3;
+        margin-bottom: 1.5rem;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+    }
+    
+    .hero-brand {
+        font-size: 2.8rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        line-height: 1.5;
+    }
+    
+    .hero-buttons {
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+    
+    /* 섹션 제목 최적화 */
+    .section-title {
+        font-size: 1.4rem;
+        line-height: 1.3;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    /* About 페이지 최적화 */
+    .about-hero-title {
+        font-size: 1.4rem;
+        line-height: 1.3;
+    }
+    
+    .about-hero-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    /* 서비스 카드 최적화 */
+    .service-card {
+        padding: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .service-card h3 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+    }
+    
+    .service-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .service-item {
+        padding: 1.5rem;
+        min-height: auto;
+    }
+    
+    .service-item h3 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+    
+    .service-item p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    /* 서비스 카테고리 최적화 */
+    .service-category-title {
+        font-size: 1.5rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+    }
+    
+    .service-category-subtitle {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .service-category-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    /* CTA 섹션 최적화 */
+    .cta-title {
+        font-size: 1.2rem;
+        line-height: 1.3;
+        white-space: normal;
+        word-break: keep-all;
+    }
+    
+    .cta-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    /* 컨택트 폼 최적화 */
+    .contact-form {
+        padding: 1.5rem 2rem;
+        margin: 1rem 0.5rem;
+    }
+    
+    .form-header h3 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+    
+    .form-header p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        min-height: 44px;
+    }
+    
+    /* 푸터 최적화 */
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .footer-section {
+        min-width: auto;
+        flex: none;
+    }
+    
+    .footer-section h3,
+    .footer-section h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .footer-section p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    
+    .footer-section ul li a {
+        font-size: 0.75rem;
+    }
+    
+    .footer-logo-image {
+        width: 90px;
+    }
+    
+    /* 이미지 컨테이너 최적화 */
+    .image-container {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .company-photo-container,
+    .ceo-photo-container {
+        max-width: 300px;
+        padding: 1rem;
+    }
+    
+    /* 텍스트 관련 최적화 */
+    .lead-text {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .description-paragraph p,
+    .ceo-description p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+    
+    .text-block p,
+    .philosophy-block p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+    
+    .philosophy-text {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        padding-left: 0.5rem;
+    }
+    
+    .career-item {
+        padding: 1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .career-item h4 {
+        font-size: 0.95rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+    }
+    
+    .career-item p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .ceo-philosophy p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+    
+    /* 통계 섹션 최적화 */
+    .stat-item {
+        padding: 2rem 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+    }
+}
+
+/* 초소형 화면 (320px 이하) 대응 */
+@media (max-width: 320px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    /* 로고 더 작게 */
+    .logo-image {
+        width: 80px;
+    }
+    
+    /* 히어로 섹션 더 작게 */
+    .hero-title {
+        font-size: 1.1rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-brand {
+        font-size: 2.4rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    /* 섹션 제목 더 작게 */
+    .section-title {
+        font-size: 1.2rem;
+        line-height: 1.2;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    /* About 페이지 더 작게 */
+    .about-hero-title {
+        font-size: 1.2rem;
+    }
+    
+    .about-hero-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    /* 서비스 카테고리 더 작게 */
+    .service-category-title {
+        font-size: 1.3rem;
+        line-height: 1.2;
+    }
+    
+    .service-category-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .service-category-description {
+        font-size: 0.8rem;
+    }
+    
+    /* CTA 제목 더 작게 */
+    .cta-title {
+        font-size: 1.1rem;
+        line-height: 1.2;
+    }
+    
+    .cta-description {
+        font-size: 0.85rem;
+    }
+    
+    /* 컨택트 폼 더 작게 */
+    .contact-form {
+        padding: 1.2rem 1.5rem;
+        margin: 0.5rem;
+    }
+    
+    .form-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .form-header p {
+        font-size: 0.75rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+        min-height: 40px;
+    }
+    
+    /* 텍스트 더 작게 */
+    .lead-text {
+        font-size: 0.9rem;
+    }
+    
+    .description-paragraph p,
+    .ceo-description p,
+    .text-block p,
+    .philosophy-block p,
+    .ceo-philosophy p {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+    
+    .philosophy-text {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+    
+    .career-item {
+        padding: 0.8rem;
+    }
+    
+    .career-item h4 {
+        font-size: 0.9rem;
+    }
+    
+    .career-item p {
+        font-size: 0.8rem;
+    }
+    
+    /* 이미지 더 작게 */
+    .image-container {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .company-photo-container,
+    .ceo-photo-container {
+        max-width: 280px;
+        padding: 0.8rem;
+    }
+    
+    /* 통계 더 작게 */
+    .stat-item {
+        padding: 1.5rem 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    /* 푸터 더 작게 */
+    .footer-logo-image {
+        width: 80px;
+    }
+    
+    .footer-section h3,
+    .footer-section h4 {
+        font-size: 0.85rem;
+    }
+    
+    .footer-section p {
+        font-size: 0.75rem;
+    }
+    
+    .footer-section ul li a {
+        font-size: 0.7rem;
+    }
+}
+
+/* 텍스트 오버플로우 방지를 위한 추가 스타일 */
+.text-overflow-prevent {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    hyphens: auto;
+}
+
+/* 모든 텍스트 요소에 오버플로우 방지 적용 */
+h1, h2, h3, h4, h5, h6, p, span, div, li, a {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* 긴 단어나 URL이 있을 경우를 대비한 추가 스타일 */
+.hero-title,
+.section-title,
+.service-category-title,
+.about-hero-title {
+    word-break: keep-all;
+    hyphens: auto;
+}
+
+/* 버튼의 텍스트 오버플로우 방지 */
+.btn {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+@media (max-width: 360px) {
+    .btn {
+        white-space: normal;
+        line-height: 1.3;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+/* 네비게이션 메뉴 작은 화면 최적화 */
+@media (max-width: 360px) {
+    .nav-list {
+        gap: 1.5rem;
+    }
+    
+    .nav-list a {
+        font-size: 0.9rem;
+    }
+    
+    /* 모바일 메뉴 개선 */
+    .nav.active {
+        display: flex !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem 0.8rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        border-radius: 0 0 15px 15px;
+        z-index: 999;
+    }
+    
+    .nav.active .nav-list {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+    
+    .nav.active .nav-list li {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav.active .nav-list li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav.active .nav-list a {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        color: var(--main-dark);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav.active .nav-list a:hover {
+        background: var(--main-light);
+        color: var(--brand-primary);
+    }
+    
+    /* 드롭다운 메뉴 모바일 최적화 */
+    .nav.active .dropdown-menu {
+        position: static;
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: var(--main-light);
+        margin: 0.5rem 0 0 0;
+        padding: 0;
+        border-radius: 8px;
+        min-width: auto;
+    }
+    
+    .nav.active .dropdown-menu li {
+        border-bottom: 1px solid #e0e0e0;
+        padding: 0;
+    }
+    
+    .nav.active .dropdown-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav.active .dropdown-menu a {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+        color: var(--main-gray);
+        background: transparent;
+    }
+    
+    .nav.active .dropdown-menu a:hover {
+        background: white;
+        color: var(--brand-primary);
+    }
+    
+    /* 모바일 메뉴 버튼 개선 */
+    .mobile-menu-btn {
+        width: 30px;
+        height: 30px;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding: 0;
+        background: none;
+        border: none;
+        position: relative;
+        z-index: 1000;
+    }
+    
+    .mobile-menu-btn span {
+        width: 20px;
+        height: 2px;
+        background: var(--main-dark);
+        margin: 2px 0;
+        transition: 0.3s;
+        display: block;
+    }
+    
+    /* 모바일 메뉴 활성화 시 햄버거 버튼 애니메이션 */
+    .mobile-menu-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(3px, 3px);
+        background: var(--brand-primary);
+    }
+    
+    .mobile-menu-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(3px, -3px);
+        background: var(--brand-primary);
+    }
+}
+
+/* 320px 이하에서 모바일 메뉴 더 최적화 */
+@media (max-width: 320px) {
+    .nav.active {
+        padding: 0.8rem 0.5rem;
+    }
+    
+    .nav.active .nav-list a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .nav.active .dropdown-menu a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .mobile-menu-btn {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .mobile-menu-btn span {
+        width: 18px;
+        height: 2px;
+        margin: 1.5px 0;
+    }
+}
+
+/* 텍스트 가독성 개선을 위한 추가 스타일 */
+@media (max-width: 360px) {
+    /* 라인 높이 조정으로 가독성 향상 */
+    p, li, div {
+        line-height: 1.6;
+    }
+    
+    /* 마진과 패딩 최적화 */
+    .hero-content {
+        padding: 0 10px;
+    }
+    
+    .about-content,
+    .ceo-content {
+        padding: 0 10px;
+    }
+    
+    .service-items {
+        padding: 0 10px;
+        gap: 1.5rem;
+    }
+    
+    .contact-content {
+        padding: 0 10px;
+    }
+    
+    /* 스크롤 여백 조정 */
+    .service-category {
+        scroll-margin-top: 80px;
+    }
+    
+    /* 접근성 향상을 위한 최소 터치 영역 확보 */
+    .btn,
+    .nav-list a,
+    .footer-section a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* 폼 요소들의 터치 영역 확보 */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+}
+
+/* 가로 스크롤 방지 */
+@media (max-width: 360px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* 이미지 오버플로우 방지 */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* 테이블이나 코드 블록 등의 오버플로우 방지 */
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.service-item {
+    padding: 1.5rem;
+    min-height: auto;
+}
+
+.service-item h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.service-item p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* 서비스 카테고리 최적화 */
+.service-category-title {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+.service-category-subtitle {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.service-category-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
